@@ -12,9 +12,9 @@ import models.Product;
 import models.Country;
 
 public class Operations {
-	private String jdbcURL = "jdbc:mysql://localhost:3300/computers?useSSL=false";
-	private String jdbcUsername = "root";
-	private String jdbcPassword = "password";
+	private String jdbcURL = "jdbc:mysql://localhost:3300/computers?useSSL=false"; //put your mysql url here
+	private String jdbcUsername = "root"; //put your mysql server username here
+	private String jdbcPassword = "password"; //put your mysql server password here
 	
 	private static final String INSERT_USERS_SQL = "INSERT INTO users (username, name, surname, date_of_birth, password) VALUES "
 			+ " (?, ?, ?, ?, ?);";
