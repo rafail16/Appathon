@@ -48,17 +48,24 @@ public class PageUpdate extends HttpServlet {
 		String name = request.getParameter("name");
 		String surname = request.getParameter("surname");
 		String date = request.getParameter("date");
-		try {
-			if(operations.updateUser(name, surname, date, username)) {
-				JOptionPane.showMessageDialog(null, "Your data have been updated");
-				response.sendRedirect("myhomepage.jsp");
+		if ((name == "" || surname == "" || date == "") && username!=null) {
+			request.setAttribute("message", "Empty Attributes");
+			JOptionPane.showMessageDialog(null, "You need to fill the form");
+			response.sendRedirect("pageupdate.jsp");
+		} else {
+			try {
+				
+				if (operations.updateUser(name, surname, date, username)) {
+					JOptionPane.showMessageDialog(null, "Your data have been updated");
+					response.sendRedirect("myhomepage.jsp");
 
-			} else {
-				JOptionPane.showMessageDialog(null, "You need to login first to update data");
-				response.sendRedirect("login.jsp");
+				} else {
+					JOptionPane.showMessageDialog(null, "You need to login first to update data");
+					response.sendRedirect("login.jsp");
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
 			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		}
 	}
 }
