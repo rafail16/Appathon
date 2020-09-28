@@ -53,7 +53,11 @@ public class Login extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("username", username);
 				response.sendRedirect("myhomepage.jsp");
-
+			} else if(operations.existingUser(username)){
+				HttpSession session = request.getSession();
+				session.setAttribute("username", username);
+				JOptionPane.showMessageDialog(null, "Wrong Password");
+				response.sendRedirect("login.jsp");
 			} else {
 				HttpSession session = request.getSession();
 				session.setAttribute("username", username);
